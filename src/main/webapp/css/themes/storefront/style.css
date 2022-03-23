@@ -2144,6 +2144,11 @@ button.menu-toggle:after {
   margin-right:0
  }
 }
+
+.hidden {
+  visibility: hidden;
+}
+
 @media (max-width:66.4989378333em) {
  .col-full {
   margin-left:2.617924em;

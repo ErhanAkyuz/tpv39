@@ -22,13 +22,14 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script type="text/javascript">
+        
         var xmlHttpRequest;
 
-        function sendInfo(event) {
-            // event.preventDefault();
+        function sendInfo() {
             var num = document.testform.numText.value;
             var url = "ajax.jsp?val=" + num;
             console.log(url);
+
             if (window.XMLHttpRequest) {
                 xmlHttpRequest = new XMLHttpRequest();
             } else if (window.ActiveXObject) {
@@ -47,7 +48,7 @@
         function getInfo() {
             if (this.readyState == 4 && this.status == 200) {
                 var responseVal = xmlHttpRequest.responseText;
-                document.getElementById('test').innerHTML = responseVal;
+                document.getElementById('ajax').innerHTML = responseVal;
             }
         }
 
@@ -82,21 +83,8 @@
     var googleSearchPath = "/cse"; </script>
     <script type="text/javascript" src="http://www.google.com/afsonline/show_afs_search.js"></script>
 
-    <%--				<form action="http://www.votresiteinternet.fr/recherche.html" id="cse-search-box">--%>
-    <%--					<div>--%>
-    <%--						<input type="hidden" name="cx" value="partner-pub-7251150894597704:nz8345-k1u9" />--%>
-    <%--						<input type="hidden" name="cof" value="FORID:9" />--%>
-    <%--						<input type="hidden" name="ie" value="ISO-8859-1" />--%>
-    <%--						<input name="sitesearch" value="www.votresiteinternet.fr" type="hidden">--%>
-    <%--						<input type="text" name="q" size="31" />--%>
-    <%--						<i class="fa fa-search" id="search"></i>--%>
-    <%--&lt;%&ndash;						<input type="submit" name="sa" value="Rechercher" />&ndash;%&gt;--%>
-    <%--					</div>--%>
-    <%--					<!--  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=fr"></script> -->--%>
-    <%--				</form>--%>
-
     <form name="testform">
-        <input type="text" name="numText"/>
+        <input type="text" name="numText" onkeyup="sendInfo()" placeholder="Rechercher un article"/>
         <input type="button" value="Rehcherche" onClick="sendInfo()"/>
     </form>
 
@@ -110,7 +98,8 @@
                     <h1 class="woocommerce-products-header__title page-title">Résultats de la recherche</h1>
                 </header>
                 <ul class="products columns-3">
-                    <p id="test"></p>
+                    <div id="ajax">
+                    
                     <%
                         listeDesArticles = articles.iterator();
                         int index = 0;
@@ -128,7 +117,7 @@
                             index++;
                         %>
                         <a
-                                href="<%=response.encodeURL("./controlePanier.jsp?refArticle="+ article.getRefArticle()+ "&amp;commande=ajouterLigne")%>">
+                                href="<%=response.encodeURL("./description.jsp?refArticle="+ article.getRefArticle()+ "&amp;commande=ajouterLigne")%>">
                             <img src="
 											<% if (article.getImage().startsWith("http"))
 													out.print(article.getImage()) ;
@@ -188,6 +177,7 @@
                     <%
                         } // while
                     %>
+                    </div>
                 </ul>
             </main>
         </div>

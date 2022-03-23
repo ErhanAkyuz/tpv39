@@ -107,4 +107,21 @@ public class CatalogueManager {
 		}
 		return articles ;
 	}
+
+	public List getArticles(String s) throws Exception {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession() ;
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery("from commerce.catalogue.domaine.modele.Article as A where A.titre Like :param") ;
+			query.setParameter("param", "%"+s+"%");
+			articles = query.list();
+			session.getTransaction().commit();
+		}
+		catch (RuntimeException e) {
+			if (session.getTransaction() != null)
+				session.getTransaction().rollback();
+			throw e;
+		}
+		return articles ;
+	}
 }

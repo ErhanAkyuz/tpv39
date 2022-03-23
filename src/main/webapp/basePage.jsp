@@ -1,46 +1,33 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@ include file="enTetePage.html" %>
 <%@ page import="commerce.catalogue.service.CatalogueManager" %>
 <%@ page import="commerce.catalogue.domaine.modele.Article" %>
 <%@ page import="commerce.catalogue.domaine.modele.Livre" %>
 <%@ page import="commerce.catalogue.domaine.modele.Musique" %>
 <%@ page import="commerce.catalogue.domaine.modele.Piste" %>
-<%@ page import="commerce.catalogue.domaine.utilitaire.StringComparator" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="commerce.catalogue.domaine.utilitaire.StringComparator" %>
-<%@ page import="java.util.regex.*" %>
-
-
 <%
-    
-    String saisie = request.getParameter("val");
-    
-    if (session.getAttribute("panier") == null) {
-        response.sendRedirect("./index.jsp");
-    } else {
-        CatalogueManager catalogueManager = (CatalogueManager) application
-                .getAttribute("catalogueManager");
-        
-        List<Article> allArticles = catalogueManager.getArticles(saisie);
-        List<Article> articles =  new ArrayList();
-        for (int i = 0; i < allArticles.size(); i++) {
-            articles.add(allArticles.get(i));
-        }
-        Iterator<Article> listeDesArticles;
-        Livre livre = null;
-        Musique musique = null;
-        Article article;
-        
-        
-        listeDesArticles = articles.iterator();
-        int index = 0;
-        while (listeDesArticles.hasNext()) {
-                article = (Article) listeDesArticles.next();
-            if ((index % 3) == 0) {
+  if (session.getAttribute("panier") == null) {
+    response.sendRedirect("./index.jsp");
+  } else {
+    CatalogueManager catalogueManager = (CatalogueManager) application
+            .getAttribute("catalogueManager");
+    List<Article> articles = catalogueManager.getArticles();
+    Iterator<Article> listeDesArticles;
+    Livre livre = null;
+    Musique musique = null;
+    Article article;
+
+    listeDesArticles = articles.iterator();
+    int index = 0;
+    while (listeDesArticles.hasNext()) {
+        article = (Article) listeDesArticles.next();
+        if ((index % 3) == 0) {
 %>
 <li class="product type-product first">
         <%
-            } else {
+											} else {
 %>
 <li class="product type-product">
     <%
@@ -48,29 +35,27 @@
         index++;
     %>
     <a
-            href="<%=response.encodeURL("./controlePanier.jsp?refArticle="+ article.getRefArticle()+ "&amp;commande=ajouterLigne")%>">
+            href="<%=response.encodeURL("./description.jsp?refArticle="+ article.getRefArticle()+ "&amp;commande=ajouterLigne")%>">
         <img src="
-	        <% if (article.getImage().startsWith("http"))
-			    out.print(article.getImage()) ;
-				else {
-				out.print("./images/"+article.getImage()) ;
-				}
-				%>"
+											<% if (article.getImage().startsWith("http"))
+													out.print(article.getImage()) ;
+												else
+													out.print("./images/"+article.getImage()) ; %>"
              class="attachment-shop_catalog wp-post-image" alt="poster_2_up"
              height="300"/>
         
         <h3><%=article.getTitre()%>
         </h3>
-        <span class="price">
-            <ins>
-                <span class="amount">
-                    <%=article.getPrix()%> €</span>
-            </ins>
-        </span>
+        <span class="price"><ins>
+												<span class="amount">
+													<%=article.getPrix()%> €</span>
+											</ins>
+										</span>
     
     </a>
-    <a href="<%=response.encodeURL("./description.jsp?refArticle="+ article.getRefArticle()+ "&amp;commande=ajouterLigne")%>"
-       class="button add_to_cart_button product_type_simple">Mettre dans le panier</a>
+    <a
+            href="<%=response.encodeURL("./controlePanier.jsp?refArticle="+ article.getRefArticle()+ "&amp;commande=ajouterLigne")%>"
+            class="button add_to_cart_button product_type_simple">Mettre dans le panier</a>
     <%
         if (article instanceof Musique) {
             musique = (Musique) article;
