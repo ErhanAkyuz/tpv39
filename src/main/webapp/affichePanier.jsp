@@ -3,6 +3,7 @@
 <%@ page import="commerce.catalogue.service.CatalogueManager"%>
 <%@ page import="commerce.catalogue.domaine.modele.Article"%>
 <%@ page import="commerce.gestion.Panier"%>
+<%@ page import="java.text.DecimalFormat"%>
 <%@ page import="commerce.gestion.LignePanier"%>
 <%@ page import="java.util.Iterator"%>
 <%@ page import="java.util.UUID"%>
@@ -86,7 +87,7 @@
 											<td class="product-name"><%=unArticle.getTitre()%></td>
 											<td class="product-price">
 												<span class="amount">
-													<%=uneLignePanier.getPrixUnitaire()%>€
+													<%=new DecimalFormat("0.00").format(uneLignePanier.getPrixUnitaire())%>€
 												</span>
 											</td>
 											<td class="product-quantity">
@@ -99,7 +100,7 @@
 												</div>
 											</td>
 											<td class="product-subtotal">
-												<span class="amount"><%=uneLignePanier.getPrixTotal()%>€</span>
+												<span class="amount"><%=new DecimalFormat("0.00").format(uneLignePanier.getPrixTotal())%>€</span>
 											</td>
 										</tr>
 <%
@@ -121,7 +122,7 @@
 											<tr class="cart-subtotal">
 												<th>Sous-total</th>
 												<td>
-													<span class="amount"><%=lePanier.getTotal()%>€</span>
+													<span class="amount"><%=new DecimalFormat("0.00").format((lePanier.getTotal()))%>€</span>
 												</td>
 											</tr>
 											<tr class="shipping">
@@ -132,7 +133,7 @@
 												<th>Total</th>
 												<td>
 													<strong>
-														<span class="amount"><%=lePanier.getTotal()%>€</span>
+														<span class="amount"><%=new DecimalFormat("0.00").format(lePanier.getTotal())%>€</span>
 													</strong>
 												</td>
 											</tr>

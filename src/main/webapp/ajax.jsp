@@ -48,7 +48,7 @@
         index++;
     %>
     <a
-            href="<%=response.encodeURL("./controlePanier.jsp?refArticle="+ article.getRefArticle()+ "&amp;commande=ajouterLigne")%>">
+            href="<%=response.encodeURL("./description.jsp?refArticle="+ article.getRefArticle()+ "&amp;commande=ajouterLigne")%>">
         <img src="
 	        <% if (article.getImage().startsWith("http"))
 			    out.print(article.getImage()) ;

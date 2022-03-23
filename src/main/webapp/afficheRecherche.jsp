@@ -184,6 +184,7 @@
     </div><!-- .col-full -->
 </div>
 <!-- #content -->
+
 <script type="text/javascript">
     window.addEventListener("load", myFunction, false);
 
@@ -227,6 +228,7 @@
         }
     }
 </script>
+
 <%
     }
 %>

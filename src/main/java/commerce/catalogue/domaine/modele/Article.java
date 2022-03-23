@@ -24,6 +24,7 @@ public class Article {
 	private String refArticle; 
 	private String titre;
 	private String image;
+	private String description;
 	private double prix;
 	private int disponibilite;
 
@@ -34,7 +35,14 @@ public class Article {
 	public void setRefArticle(String inRefArticle) {
 		refArticle = inRefArticle;
 	}
-	
+	@Basic
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description){
+		this.description = description;
+	}
+
 	@Basic
 	public String getTitre() {
 		return titre;
@@ -72,7 +80,6 @@ public class Article {
 	public void setDisponibilite(int inDisponibilite) {
 		disponibilite = inDisponibilite;
 	}
-
 	public boolean equals(Object o) {
 		boolean retour = false ;
 		if (!(o instanceof Article))

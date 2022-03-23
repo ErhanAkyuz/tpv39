@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Iterator;
 
 import commerce.catalogue.domaine.modele.Article;
-
+import java.text.DecimalFormat;
 public class Panier {
 	private double total;
 	private ArrayList<LignePanier> lignesPanier;
@@ -38,7 +38,7 @@ public class Panier {
 			ligne.recalculer();
 			total += ligne.getPrixTotal();
 		}
-		total = total%.2f;
+		total = total;
 	}
 	public void ajouterLigne(Article inArticle) {
 		LignePanier lp = chercherLignePanier(inArticle) ;

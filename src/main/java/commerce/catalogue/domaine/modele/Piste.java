@@ -16,7 +16,7 @@ public class Piste {
 	private String refPiste;
 	private String titre;
 	private String url;
-
+	private String description;
 	@Id
 	public String getRefPiste() {
 		return refPiste;
@@ -24,7 +24,14 @@ public class Piste {
 	public void setRefPiste(String inRefPiste) {
 		refPiste = inRefPiste;
 	}
-	
+
+	@Basic
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description){
+		this.description = description;
+	}
 	@Basic
 	public String getTitre() {
 		return titre;

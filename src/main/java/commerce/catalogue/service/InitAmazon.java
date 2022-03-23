@@ -119,6 +119,7 @@ public class InitAmazon {
 							livre.setImage(image.getChild("URL",espaceNom).getText());
 							livre.setPrix(Integer.parseInt(item.getChild("OfferSummary",espaceNom).getChild("LowestNewPrice",espaceNom).getChild("Amount",espaceNom).getText())/100.0);
 							livre.setDisponibilite(1);
+							livre.setDescription("Un bon livre");
 							catalogueManager.soumettreArticle(livre) ;
 							i ++ ;
 						}
@@ -129,7 +130,7 @@ public class InitAmazon {
 							musique.setImage(image.getChild("URL",espaceNom).getText());
 							musique.setPrix(Integer.parseInt(item.getChild("OfferSummary",espaceNom).getChild("LowestNewPrice",espaceNom).getChild("Amount",espaceNom).getText())/100.0);
 							musique.setDisponibilite(1);
-
+							musique.setDescription("Une musique spéciale");
 							int j = 0 ;
 							Boolean sortir = (j==albums.getData().size()) ;
 							Boolean albumTrouve = false ;
@@ -185,6 +186,7 @@ public class InitAmazon {
 					livre.setNbPages(736);
 					livre.setPrix("8.90");
 					livre.setDisponibilite("1");
+					livre.setDescription("un livre saisissant");
 					catalogueManager.soumettreArticle(livre);
 					livre = new Livre();
 					livre.setRefArticle("1141555897821");
@@ -195,6 +197,7 @@ public class InitAmazon {
 					livre.setNbPages(400);
 					livre.setPrix("7.90");
 					livre.setDisponibilite("1");
+					livre.setDescription("un livre triste");
 					catalogueManager.soumettreArticle(livre);
 					livre = new Livre();
 					livre.setRefArticle("1141556299459");
@@ -205,16 +208,18 @@ public class InitAmazon {
 					livre.setNbPages(840);
 					livre.setPrix("8.90");
 					livre.setDisponibilite("1");
+					livre.setDescription("un livre innatendu");
 					catalogueManager.soumettreArticle(livre);
 					livre = new Livre();
 					livre.setRefArticle("1141556299459");
 					livre.setTitre("Si ça saigne");
 					livre.setAuteur("Stephen King");
 					livre.setISBN("2212110685");
-					livre.setImage("81+5tjtuBBL.jpg");
+					livre.setImage("sicasaigne.jpg");
 					livre.setNbPages(840);
 					livre.setPrix("15");
 					livre.setDisponibilite("1");
+					livre.setDescription("un livre trompeur");
 					catalogueManager.soumettreArticle(livre);
 
 				}
